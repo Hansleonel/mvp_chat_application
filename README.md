@@ -1,16 +1,5 @@
 # mvp_chat_application
 
-A new Flutter project.
+MVP Chat Application with IA for consume a service and response request from database.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![simulator_screenshot_B6ED0ACF-E37F-46FB-9F6E-E50130C6A958](https://user-images.githubusercontent.com/9261723/236354519-d8b9b65f-ca0d-45f2-bc16-22d22c78baf0.png)
