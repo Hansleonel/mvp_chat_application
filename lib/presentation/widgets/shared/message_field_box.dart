@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
 class MessageFieldBox extends StatelessWidget {
-  const MessageFieldBox({Key? key}) : super(key: key);
+  // esta propiedad se activa cuando se utiliza el submit del TextFormField
+  // o cuando se hace onPressed en el icon esto se puede personalizar,
+  // ademas esta propiedad siempre devuelve un valor
+  // en este caso un String, aunque dicho tipo puede ser personalizado
+  // podriamos hacer el llamado del provider directamente para usar el metodo sendMessage
+  // pero hariamos que el widget solo sea utilizable con ese provider
+  // es por eso que usamos la propiedad onValue del tipo ValueChanged
+  final ValueChanged<String> onValue;
+  const MessageFieldBox({Key? key, required this.onValue}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +28,8 @@ class MessageFieldBox extends StatelessWidget {
           onPressed: () {
             print('icon pressed');
             print('value with button pressed ${messageController.text}');
+            final textValue = messageController.text;
+            onValue(textValue);
             messageController.clear();
           },
         ));
@@ -32,6 +42,7 @@ class MessageFieldBox extends StatelessWidget {
         decoration: inputDecoration,
         onFieldSubmitted: (value) {
           print('onField submitted value $value');
+          onValue(value);
           messageController.clear();
           focusNode.requestFocus();
         },

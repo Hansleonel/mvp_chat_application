@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mvp_chat_application/domain/entities/message.dart';
 
 class HerMessageBubble extends StatelessWidget {
-  const HerMessageBubble({Key? key}) : super(key: key);
+  final Message message;
+  const HerMessageBubble({Key? key, required this.message}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,16 +18,21 @@ class HerMessageBubble extends StatelessWidget {
             color: color.secondary,
             borderRadius: BorderRadius.circular(16),
           ),
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             child: Text(
-              'text for message',
-              style: TextStyle(color: Colors.white),
+              message.text,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontStyle:
+                      message.text == 'Writing...' ? FontStyle.italic : null),
             ),
           ),
         ),
         const SizedBox(height: 4),
-        const _ImageBubble(),
+        _ImageBubble(
+          imageURL: message.imageURL,
+        ),
         const SizedBox(height: 4)
       ],
     );
@@ -33,7 +40,8 @@ class HerMessageBubble extends StatelessWidget {
 }
 
 class _ImageBubble extends StatelessWidget {
-  const _ImageBubble({Key? key}) : super(key: key);
+  final String? imageURL;
+  const _ImageBubble({Key? key, this.imageURL}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +50,8 @@ class _ImageBubble extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16),
       child: Image.network(
-        'https://hotpotmedia.s3.us-east-2.amazonaws.com/8-TzVS46cWGz3LTnO.png?nc=1',
+        imageURL ??
+            'https://hotpotmedia.s3.us-east-2.amazonaws.com/8-TzVS46cWGz3LTnO.png?nc=1',
         width: size.width * 0.7,
         height: 150,
         fit: BoxFit.cover,

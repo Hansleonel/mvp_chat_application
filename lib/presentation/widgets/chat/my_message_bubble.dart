@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mvp_chat_application/domain/entities/message.dart';
 
 class MyMessageBubble extends StatelessWidget {
-  const MyMessageBubble({Key? key}) : super(key: key);
+  final Message message;
+  const MyMessageBubble({Key? key, required this.message}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +18,11 @@ class MyMessageBubble extends StatelessWidget {
             color: color.primary,
             borderRadius: BorderRadius.circular(16),
           ),
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             child: Text(
-              'text for message',
-              style: TextStyle(color: Colors.white),
+              message.text,
+              style: const TextStyle(color: Colors.white),
             ),
           ),
         ),
